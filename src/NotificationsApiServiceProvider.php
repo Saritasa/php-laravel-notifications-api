@@ -11,7 +11,7 @@ class NotificationsApiServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $defer = true;
+    protected $defer = false;
 
     /**
      * Bootstrap the application events.
@@ -20,6 +20,11 @@ class NotificationsApiServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if ($this->app->runningInConsole()) {
+            $this->declarePublishedConfig();
+            $this->declarePublishedArtifacts();
+            $this->declarePublishedMigrations();
+        }
     }
 
     /**
@@ -29,5 +34,26 @@ class NotificationsApiServiceProvider extends ServiceProvider
      */
     public function register()
     {
+    }
+
+    private function declarePublishedConfig()
+    {
+        $this->publishes([
+            __DIR__.'../config/push.php' => config_path('push.php')
+        ], 'config');
+    }
+
+    private function declarePublishedArtifacts()
+    {
+        $this->publishes([
+            __DIR__.'../Artifacts/' => app_path('Artifacts')
+        ], 'swagger');
+    }
+
+    private function declarePublishedMigrations()
+    {
+        $this->publishes([
+            __DIR__.'../database' => database_path()
+        ], 'migrations');
     }
 }
