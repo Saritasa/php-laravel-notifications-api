@@ -12,10 +12,10 @@
     ],
     "require": {
         "php": ">=7.0",
-        "illuminate/support": "5.*",
-        "saritasa/eloquent-custom": "^1.0",
+        "illuminate/database": "^5.4",
         "illuminate/http": "^5.4",
-        "illuminate/database": "^5.4"
+        "illuminate/support": "^5.4",
+        "saritasa/eloquent-custom": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~5.7"
