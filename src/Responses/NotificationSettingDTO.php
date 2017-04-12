@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Api\V1\Responses;
+namespace Saritasa\Laravel\Notifications\Responses;
 
 use App\Models\NotificationSetting;
 use App\Models\NotificationType;

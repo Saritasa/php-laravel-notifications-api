@@ -1,15 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace Saritasa\Laravel\Notifications\Services;
 
-use App\Api\V1\Responses\NotificationSettingDTO;
 use App\Extensions\CurrentApiUserTrait;
-use App\Models\NotificationSetting;
-use App\Models\NotificationType;
-use App\Repositories\Base\CachingRepository;
-use App\Repositories\NotificationSettingsRepository;
-use App\Repositories\NotificationTypesRepository;
-use App\Repositories\PreferenceRepository;
+use Saritasa\Laravel\Notifications\Models\NotificationSetting;
+use Saritasa\Laravel\Notifications\Models\NotificationType;
 
 class NotificationSettingsService
 {

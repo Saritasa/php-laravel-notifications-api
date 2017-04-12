@@ -1,6 +1,6 @@
 <?php
 
-namespace Saritasa\Laravel\Controllers\Api;
+namespace Saritasa\Laravel\Notifications\Api;
 
 use App\Services\NotificationSettingsService;
 use Dingo\Api\Http\Request;
