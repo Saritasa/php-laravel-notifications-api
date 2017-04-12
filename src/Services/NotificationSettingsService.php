@@ -1,10 +1,11 @@
 <?php
 
-namespace Saritasa\Laravel\Notifications\Services;
+namespace Saritasa\PushNotifications\Services;
 
 use App\Extensions\CurrentApiUserTrait;
-use Saritasa\Laravel\Notifications\Models\NotificationSetting;
-use Saritasa\Laravel\Notifications\Models\NotificationType;
+use Saritasa\PushNotifications\Models\NotificationSetting;
+use Saritasa\PushNotifications\Models\NotificationType;
+use Saritasa\PushNotifications\Responses\NotificationSettingDTO;
 
 class NotificationSettingsService
 {

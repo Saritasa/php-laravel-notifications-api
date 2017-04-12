@@ -11,14 +11,14 @@ use Saritasa\Database\Eloquent\Entity;
  *
  * @property integer $id
  * @property integer $user_id
- * @property integer $device_type_id
+ * @property DeviceType $device_type
  * @property string $device_token
  * @property string $hash
  * @property Carbon $created_at
  * @method static Builder|UserDevice whereId($value)
  * @method static Builder|UserDevice whereHash($value)
  * @method static Builder|UserDevice whereUserId($value)
- * @method static Builder|UserDevice whereDeviceTypeId($value)
+ * @method static Builder|UserDevice whereDeviceType($value)
  * @method static Builder|UserDevice whereDeviceToken($value)
  * @method static Builder|UserDevice whereCreatedAt($value)
  * @mixin \Eloquent
@@ -77,8 +77,12 @@ class UserDevice extends Entity
      */
     protected $fillable = [
         'user_id',
-        'device_type_id',
+        'device_type',
         'device_token'
+    ];
+
+    protected $enums = [
+        'purchase_type' => DeviceType::class
     ];
 
     /**

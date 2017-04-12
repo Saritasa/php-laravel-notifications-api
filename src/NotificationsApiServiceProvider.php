@@ -1,8 +1,7 @@
 <?php
 
-namespace Saritasa\Laravel;
+namespace Saritasa\PushNotifications;
 
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class NotificationsApiServiceProvider extends ServiceProvider
@@ -30,6 +29,5 @@ class NotificationsApiServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
     }
 }

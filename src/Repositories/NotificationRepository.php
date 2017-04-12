@@ -2,12 +2,11 @@
 
 namespace Saritasa\PushNotifications\Repositories;
 
+use Illuminate\Support\Facades\DB;
 use Saritasa\Exceptions\NotFoundException;
-use App\Model\Entities\Notification;
-use App\Model\Entities\NotificationSetting;
-use App\Model\Entities\NotificationType;
-use App\Model\Entities\User;
-use DB;
+use Saritasa\PushNotifications\Models\Notification;
+use Saritasa\PushNotifications\Models\NotificationSetting;
+use Saritasa\PushNotifications\Models\NotificationType;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Query\JoinClause;
@@ -83,6 +82,7 @@ class NotificationRepository
      * @param integer $id Notification id
      * @param int $userId
      * @return Notification
+     * @throws NotFoundException
      */
     public function find(int $id, int $userId = 0)
     {

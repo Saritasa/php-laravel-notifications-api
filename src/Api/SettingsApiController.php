@@ -1,9 +1,10 @@
 <?php
 
-namespace Saritasa\Laravel\Notifications\Api;
+namespace Saritasa\PushNotifications\Api;
 
-use App\Services\NotificationSettingsService;
 use Dingo\Api\Http\Request;
+use Saritasa\DingoApi\BaseApiController;
+use Saritasa\Laravel\Notifications\Services\NotificationSettingsService;
 
 class SettingsApiController extends BaseApiController
 {

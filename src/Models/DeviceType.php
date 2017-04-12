@@ -2,54 +2,24 @@
 
 namespace Saritasa\PushNotifications\Models;
 
-use Illuminate\Database\Query\Builder;
-use Saritasa\Database\Eloquent\Entity;
+use Saritasa\Enum;
 
 /**
- * App\Model\Entities\DeviceType
- *
- * @property integer $id
- * @property string $name
- * @method static Builder|DeviceType whereId($value)
- * @method static Builder|DeviceType whereName($value)
- * @mixin \Eloquent
+ * Device type: Android or iOS
  */
-class DeviceType extends Entity
+class DeviceType extends Enum
 {
     /**
-     * The id of iphone device type.
-     *
-     * @var integer
-     */
-    const IPHONE_ID = 1;
-
-    /**
-     * The id of android device type.
-     *
-     * @var integer
-     */
-    const ANDROID_ID = 2;
-
-    /**
-     * The table associated with the model.
+     * iOS: iPhone or iPad
      *
      * @var string
      */
-    protected $table = 'device_types';
+    const IOS = 'ios';
 
     /**
-     * Indicates if the model should be timestamped.
+     * Android phone or tablete
      *
-     * @var bool
+     * @var string
      */
-    public $timestamps = false;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name'
-    ];
+    const ANDROID = 'android';
 }

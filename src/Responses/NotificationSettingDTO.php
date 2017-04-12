@@ -1,9 +1,9 @@
 <?php
 
-namespace Saritasa\Laravel\Notifications\Responses;
+namespace Saritasa\PushNotifications\Responses;
 
-use App\Models\NotificationSetting;
-use App\Models\NotificationType;
+use Saritasa\PushNotifications\Models\NotificationSetting;
+use Saritasa\PushNotifications\Models\NotificationType;
 use Saritasa\Transformers\DtoModel;
 
 class NotificationSettingDTO extends DtoModel
