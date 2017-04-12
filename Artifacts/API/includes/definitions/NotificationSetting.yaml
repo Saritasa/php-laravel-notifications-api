@@ -1,0 +1,19 @@
+type: object
+description: Notification Setting
+properties:
+  id:
+    $ref: 'utils/Identifier.yaml'
+
+  name:
+    type: string
+    description: Notification type description, visible to user
+    maxLength: 40
+    example: Allow push notifications
+    x-chance-type: sentence
+    x-type-options:
+      words: 4
+
+  default_on:
+    type: boolean
+    description: If notification turned on or off by default
+    example: true

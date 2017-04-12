@@ -1,0 +1,18 @@
+get:
+  tags: ['Notifications']
+  summary: 'Get paginated list of notifications'
+  operationId: GetNotificationsList
+  parameters:
+    - $ref: '../../parameters.yaml#/PageSize'
+    - $ref: '../../parameters.yaml#/Page'
+  responses:
+    200:
+      description: Return list of notifications successfully
+      schema:
+        $ref: '../../definitions.yaml#/NotificationsList'
+    401:
+      $ref: '../../responses.yaml#/UserNotAuthorized'
+    default:
+      $ref: '../../responses.yaml#/APIErrorResponse'
+  security:
+  - AuthToken: []
