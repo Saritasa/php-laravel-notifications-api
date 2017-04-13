@@ -64,7 +64,10 @@ class NotificationsApiServiceProvider extends ServiceProvider
     {
         /* @var Router $router */
         $router = $this->app['api.router'];
-        $router->version('v1', ['middleware' => ['api', 'api.auth']], function(Router $router) {
+        $router->version('v1', [
+            'middleware' => ['api', 'api.auth'],
+            'namespace' => 'Saritasa\PushNotifications\Api'
+        ], function(Router $router) {
             $this->registerSettingsRoutes($router);
             $this->registerNotificationsRoutes($router);
         });
@@ -72,23 +75,35 @@ class NotificationsApiServiceProvider extends ServiceProvider
 
     private function registerSettingsRoutes(Router $router)
     {
-        $router->group([
-            'namespace' => 'Saritasa\PushNotifications\Api'
-        ], function(Router $router) {
-            $router->get('settings/notifications', [
+        $router->group([ 'prefix' => 'settings' ], function(Router $router) {
+
+            $router->get('notifications', [
                 'uses'  => 'SettingsApiController@getNotificationSettings',
                 'as'    => 'settings.notifications'
             ]);
 
-            $router->put('settings/notifications', [
+            $router->put('notifications', [
                 'uses'  => 'SettingsApiController@setNotificationSettings',
                 'as'    => 'settings.notifications.update'
             ]);
+
         });
     }
 
     protected function registerNotificationsRoutes(Router $router)
     {
+        $router->group(['prefix' => 'notifications'], function (Router $router) {
 
+            $router->get('', [
+                'uses'  => 'NotificationsApiController@getUserNotifications',
+                'as'    => 'notifications'
+            ]);
+
+            $router->put('viewed', [
+                'uses'  => 'NotificationsApiController@markNotificationsAsViewed',
+                'as'    => 'notifications.viewed'
+            ]);
+
+        });
     }
 }
