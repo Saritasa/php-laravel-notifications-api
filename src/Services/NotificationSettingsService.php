@@ -2,7 +2,7 @@
 
 namespace Saritasa\PushNotifications\Services;
 
-use App\Extensions\CurrentApiUserTrait;
+use Saritasa\DingoApi\Traits\CurrentApiUserTrait;
 use Saritasa\PushNotifications\Models\NotificationSetting;
 use Saritasa\PushNotifications\Models\NotificationType;
 use Saritasa\PushNotifications\Responses\NotificationSettingDTO;
