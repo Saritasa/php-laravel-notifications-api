@@ -39,21 +39,21 @@ class NotificationsApiServiceProvider extends ServiceProvider
     private function declarePublishedConfig()
     {
         $this->publishes([
-            __DIR__.'../config/push.php' => config_path('push.php')
+            __DIR__.'/../config/push.php' => config_path('push.php')
         ], 'config');
     }
 
     private function declarePublishedArtifacts()
     {
         $this->publishes([
-            __DIR__.'../Artifacts/' => app_path('Artifacts')
+            __DIR__.'/../Artifacts/API' => base_path('Artifacts/API')
         ], 'swagger');
     }
 
     private function declarePublishedMigrations()
     {
         $this->publishes([
-            __DIR__.'../database' => database_path()
+            __DIR__.'/../database' => database_path()
         ], 'migrations');
     }
 }
