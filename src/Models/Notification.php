@@ -40,14 +40,11 @@ class Notification extends Entity
     public $timestamps = true;
 
     protected $fillable = [
-        'user_id',
-        'subject',
-        'message',
+        'title',
         'data',
         'notification_type_id',
         'is_queued',
-        'is_viewed',
-        'delivered_at',
+        'read_at',
     ];
 
     /**
@@ -57,8 +54,18 @@ class Notification extends Entity
      */
     protected $hidden = [
         'is_queued',
+        'type',
         'modified_at',
         'updated_at',
+        'notifiable_type',
+        'notifiable_id'
+    ];
+
+    protected $dates = [
+        self::CREATED_AT,
+        self::UPDATED_AT,
+        self::DELETED_AT,
+        'read_at'
     ];
 
     /**
@@ -67,8 +74,6 @@ class Notification extends Entity
      * @var array
      */
     protected $casts = [
-        'is_viewed' => 'boolean',
         'is_queued' => 'boolean',
-        'data' => 'array',
     ];
 }
