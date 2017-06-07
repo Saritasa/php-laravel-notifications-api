@@ -33,7 +33,7 @@ class UserDevice extends Entity
     /**
      * @var string
      */
-    const DEVICE_TOKEN = 'device_token';
+    const DEVICE_ID = 'device_id';
 
     /**
      * @var string
@@ -97,8 +97,8 @@ class UserDevice extends Entity
     {
         parent::fill($attributes);
 
-        if (isset($attributes[static::DEVICE_TOKEN])) {
-            $this->setDeviceToken($attributes[static::DEVICE_TOKEN]);
+        if (isset($attributes[static::DEVICE_ID])) {
+            $this->setDeviceToken($attributes[static::DEVICE_ID]);
         }
 
         return $this;
@@ -196,7 +196,7 @@ class UserDevice extends Entity
     public static function authRules()
     {
         return [
-            static::DEVICE_TOKEN => static::RULE_REQUIRED,
+            static::DEVICE_ID => static::RULE_REQUIRED,
             static::DEVICE_TYPE => static::DEVICE_TYPE_RULE,
         ];
     }

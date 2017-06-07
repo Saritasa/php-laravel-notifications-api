@@ -62,6 +62,11 @@ class NotificationsApiServiceProvider extends ServiceProvider
                 'as'    => 'settings.notifications.update'
             ]);
 
+            $router->put('device', [
+                'uses'  => 'SettingsApiController@saveUserDevice',
+                'as'    => 'settings.device'
+            ]);
+
         });
     }
 
