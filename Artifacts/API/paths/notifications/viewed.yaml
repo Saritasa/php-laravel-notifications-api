@@ -1,0 +1,33 @@
+post:
+  tags: ['Notifications']
+  summary: Mark notification message(s) as viewed
+  operationId: MarkNotificationsViewed
+  parameters:
+  - in: body
+    name: markNotificationsViewedRequest
+    schema:
+      type: object
+      properties:
+        message_ids:
+          type: array
+          description: List of message IDs, sent to user
+          items:
+            type: integer
+            minimum: 1
+          example: [123,124,125]
+  responses:
+    204:
+      description: Notifications marked as viewed successfully
+    400:
+      $ref: '../../responses.yaml#/InputValidationError'
+    401:
+      $ref: '../../responses.yaml#/UserNotAuthorized'
+    403:
+      description: User tries to mark as read other user's notification
+      schema:
+         $ref: '../../definitions.yaml#/ErrorMessage'
+    default:
+      $ref: '../../responses.yaml#/APIErrorResponse'
+  security:
+  - AuthToken: []
+

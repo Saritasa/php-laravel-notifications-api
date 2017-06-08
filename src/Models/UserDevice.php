@@ -12,7 +12,7 @@ use Saritasa\Database\Eloquent\Entity;
  * @property integer $id
  * @property integer $user_id
  * @property DeviceType $device_type
- * @property string $device_token
+ * @property string $device_id
  * @property string $hash
  * @property Carbon $created_at
  * @method static Builder|UserDevice whereId($value)
@@ -85,6 +85,8 @@ class UserDevice extends Entity
         'purchase_type' => DeviceType::class
     ];
 
+    public function setUpdatedAt($value) {}
+
     /**
      * Fill the model with an array of attributes.
      * Override fill function
@@ -112,7 +114,7 @@ class UserDevice extends Entity
      */
     public function setDeviceToken($value)
     {
-        $this->device_token = $value;
+        $this->device_id = $value;
         $this->hash = static::toHash($value);
         return $this;
     }
