@@ -14,48 +14,51 @@ class NotificationsApiServiceProvider extends ServiceProvider
     /**
      * Bootstrap the application events.
      *
+     * @param Router $apiRouter Dingo/Api router
      * @return void
      */
-    public function boot()
+    public function boot(Router $apiRouter)
     {
         if ($this->app->runningInConsole()) {
             $this->declarePublishedFiles();
         }
 
-        $this->registerRoutes();
+        $this->registerRoutes($apiRouter);
     }
 
     /**
      * Register API routes and handlers for them
+
+     * @param Router $apiRouter Dingo/Api router
+     * @return void
      */
-    protected function registerRoutes()
+    protected function registerRoutes(Router $apiRouter)
     {
         /* @var Router $router */
-        $router = $this->app['api.router'];
-        $router->version('v1', [
-            'middleware' => ['api'],
+        $apiRouter->version('v1', [
+            'middleware' => ['api', 'api.auth'],
             'namespace' => 'Saritasa\PushNotifications\Api'
-        ], function(Router $router) {
-            $this->registerSettingsRoutes($router);
-            $this->registerNotificationsRoutes($router);
+        ], function(Router $apiRouter) {
+            $this->registerSettingsRoutes($apiRouter);
+            $this->registerNotificationsRoutes($apiRouter);
         });
     }
 
-    protected function registerSettingsRoutes(Router $router)
+    protected function registerSettingsRoutes(Router $apiRouter)
     {
-        $router->group([ 'prefix' => 'settings' ], function(Router $router) {
+        $apiRouter->group([ 'prefix' => 'settings' ], function(Router $api) {
 
-            $router->get('notifications', [
+            $api->get('notifications', [
                 'uses'  => 'SettingsApiController@getNotificationSettings',
                 'as'    => 'settings.notifications'
             ]);
 
-            $router->put('notifications', [
+            $api->put('notifications', [
                 'uses'  => 'SettingsApiController@setNotificationSettings',
                 'as'    => 'settings.notifications.update'
             ]);
 
-            $router->put('device', [
+            $api->put('device', [
                 'uses'  => 'SettingsApiController@saveUserDevice',
                 'as'    => 'settings.device'
             ]);
@@ -65,14 +68,14 @@ class NotificationsApiServiceProvider extends ServiceProvider
 
     protected function registerNotificationsRoutes(Router $router)
     {
-        $router->group(['prefix' => 'notifications'], function (Router $router) {
+        $router->group(['prefix' => 'notifications'], function (Router $api) {
 
-            $router->get('', [
+            $api->get('', [
                 'uses'  => 'NotificationsApiController@getUserNotifications',
                 'as'    => 'notifications'
             ]);
 
-            $router->put('viewed', [
+            $api->put('viewed', [
                 'uses'  => 'NotificationsApiController@markNotificationsAsViewed',
                 'as'    => 'notifications.viewed'
             ]);

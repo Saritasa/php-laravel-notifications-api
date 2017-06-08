@@ -1,6 +1,10 @@
+1.0.2
+-----
+Require authentication for notifications API endpoints
+
 1.0.1
 -----
-Add route /settings/device
+Add route PUT /settings/device
 
 1.0.0
 -----
