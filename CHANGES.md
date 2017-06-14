@@ -1,3 +1,5 @@
+# Changes History
+
 1.0.3
 -----
 Update dependencies versions
@@ -12,5 +14,4 @@ Add route PUT /settings/device
 
 1.0.0
 -----
-
-- Initial version
+Initial version

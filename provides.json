@@ -1,6 +1,6 @@
 {
   "providers": [
-    "Saritasa\Laravel\BladeDirectivesServiceProvider"
+    "Saritasa\\PushNotifications\\NotificationsApiServiceProvider"
   ],
   "aliases": [
     {
