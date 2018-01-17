@@ -16,7 +16,7 @@ class NotificationSettingsService
         $userSettings = NotificationSetting::whereUserId($this->user()->id)
             ->keyBy('notification_type_id');
         $notificationTypes = NotificationType::all();
-        $result = $notificationTypes->transform(function(NotificationType $type) use ($userSettings) {
+        $result = $notificationTypes->transform(function (NotificationType $type) use ($userSettings) {
             $userValue = $userSettings->get($type->id);
             return new NotificationSettingDTO($userValue, $type);
         });
@@ -25,6 +25,5 @@ class NotificationSettingsService
 
     public function update(array $input)
     {
-
     }
 }

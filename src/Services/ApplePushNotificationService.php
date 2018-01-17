@@ -299,7 +299,7 @@ class ApplePushNotificationService extends PushNotificationService
             $result = fwrite($this->connection, $binaryMessage, strlen($binaryMessage));
             $status = $result ? 'successfully' : 'failed';
             $this->info("[send] - Send push notification $status - Device: $device - Msg: $encodedPayload");
-        }  catch (Exception $ex) {
+        } catch (Exception $ex) {
             $this->error("[send] - An error occurred when send push notification - Device: ". $device .
                 " - Msg: $encodedPayload - Error: " . $ex->getCode() . "  " .
                 $ex->getMessage() . " Line: " . $ex->getLine());

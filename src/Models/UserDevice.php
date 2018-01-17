@@ -85,7 +85,9 @@ class UserDevice extends Entity
         'purchase_type' => DeviceType::class
     ];
 
-    public function setUpdatedAt($value) {}
+    public function setUpdatedAt($value)
+    {
+    }
 
     /**
      * Fill the model with an array of attributes.

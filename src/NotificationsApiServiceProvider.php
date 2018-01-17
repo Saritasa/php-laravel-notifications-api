@@ -38,7 +38,7 @@ class NotificationsApiServiceProvider extends ServiceProvider
         $apiRouter->version('v1', [
             'middleware' => ['api', 'api.auth'],
             'namespace' => 'Saritasa\PushNotifications\Api'
-        ], function(Router $apiRouter) {
+        ], function (Router $apiRouter) {
             $this->registerSettingsRoutes($apiRouter);
             $this->registerNotificationsRoutes($apiRouter);
         });
@@ -46,7 +46,7 @@ class NotificationsApiServiceProvider extends ServiceProvider
 
     protected function registerSettingsRoutes(Router $apiRouter)
     {
-        $apiRouter->group([ 'prefix' => 'settings' ], function(Router $api) {
+        $apiRouter->group([ 'prefix' => 'settings' ], function (Router $api) {
 
             $api->get('notifications', [
                 'uses'  => 'SettingsApiController@getNotificationSettings',
@@ -62,7 +62,6 @@ class NotificationsApiServiceProvider extends ServiceProvider
                 'uses'  => 'SettingsApiController@saveUserDevice',
                 'as'    => 'settings.device'
             ]);
-
         });
     }
 
@@ -79,7 +78,6 @@ class NotificationsApiServiceProvider extends ServiceProvider
                 'uses'  => 'NotificationsApiController@markNotificationsAsViewed',
                 'as'    => 'notifications.viewed'
             ]);
-
         });
     }
 

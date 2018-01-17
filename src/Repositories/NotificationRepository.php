@@ -89,7 +89,7 @@ class NotificationRepository
         /** @var Builder $query */
         $query = Notification::query()
             ->join('notification_types', 'notification_types.id', '=', 'notifications.notification_type_id')
-            ->leftJoin('notification_settings', function($join) {
+            ->leftJoin('notification_settings', function ($join) {
                 $join->on('notification_settings.notification_type_id', '=', 'notifications.notification_type_id')
                     ->on('notification_settings.user_id', '=', 'notifications.user_id');
             })
@@ -97,7 +97,7 @@ class NotificationRepository
             ->select(['notifications.*', 'notification_settings.is_on', 'notification_types.default_on']);
 
         if ($userId) {
-            $query->where('notifications.user_id' , $userId);
+            $query->where('notifications.user_id', $userId);
         }
 
         /** @var Notification $notification */
