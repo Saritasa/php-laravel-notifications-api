@@ -14,7 +14,7 @@ class NotificationSettingDTO extends DtoModel
 
     protected static $collectionKey = 'settings';
 
-    function __construct(?NotificationSetting $userSetting, NotificationType $notificationType)
+    public function __construct(?NotificationSetting $userSetting, NotificationType $notificationType)
     {
         $this->id = $notificationType->id;
         $this->name = $notificationType->name;

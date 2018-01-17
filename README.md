@@ -11,7 +11,9 @@ Install the ```saritasa/laravel-notifications-api``` package:
 $ composer require saritasa/laravel-notifications-api
 ```
 
-Add the NotificationsApiServiceProvider in ``config/app.php``:
+If you use Laraval 5.4 or less,
+or 5.5 with [package discovery](https://laravel.com/docs/5.5/packages#package-discovery) disabled,
+add the NotificationsApiServiceProvider in ``config/app.php``:
 
 ```php
 'providers' => array(
@@ -46,8 +48,9 @@ Mandatory fields:
 1. Create fork
 2. Checkout fork
 3. Develop locally as usual. **Code must follow [PSR-1](http://www.php-fig.org/psr/psr-1/), [PSR-2](http://www.php-fig.org/psr/psr-2/)**
-4. Update [README.md](README.md) to describe new or changed functionality. Add changes description to [CHANGES.md](CHANGES.md) file.
-5. When ready, create pull request
+4. Run [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) to ensure, that code follows style guides
+5. Update [README.md](README.md) to describe new or changed functionality. Add changes description to [CHANGES.md](CHANGES.md) file.
+6. When ready, create pull request
 
 ## Resources
 
