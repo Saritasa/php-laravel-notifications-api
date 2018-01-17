@@ -1,9 +1,0 @@
-{
-  "providers": [
-    "Saritasa\\PushNotifications\\NotificationsApiServiceProvider"
-  ],
-  "aliases": [
-    {
-    }
-  ]
-}
