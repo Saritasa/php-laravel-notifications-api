@@ -1,5 +1,7 @@
 # PHP Laravel Notifications API
 
+[![Build Status](https://travis-ci.org/Saritasa/php-laravel-notifications-api.svg?branch=master)](https://travis-ci.org/Saritasa/php-laravel-notifications-api)
+
 Implementation of Notifications API.
 
 
