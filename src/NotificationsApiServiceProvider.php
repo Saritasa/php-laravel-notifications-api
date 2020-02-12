@@ -102,7 +102,7 @@ class NotificationsApiServiceProvider extends ServiceProvider
     private function declarePublishedArtifacts()
     {
         $this->publishes([
-            __DIR__.'/../Artifacts/API' => base_path('Artifacts/API')
+            __DIR__ . '/../docs/API' => base_path('docs/API')
         ], 'swagger');
     }
 
