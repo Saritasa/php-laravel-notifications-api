@@ -13,7 +13,7 @@ class NotificationSettingsService
 
     public function get()
     {
-        $userSettings = NotificationSetting::whereUserId($this->user()->id)
+        $userSettings = NotificationSetting::whereUserId($this->user()->id)->get()
             ->keyBy('notification_type_id');
         $notificationTypes = NotificationType::all();
         $result = $notificationTypes->transform(function (NotificationType $type) use ($userSettings) {
