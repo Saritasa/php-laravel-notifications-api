@@ -1,5 +1,9 @@
 # Changes History
 
+1.1.1
+-----
+Fix namespace in controllers
+
 1.1.0
 -----
 Declare compatibility with Laravel 6

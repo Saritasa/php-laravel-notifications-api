@@ -5,7 +5,7 @@ namespace Saritasa\PushNotifications\Api;
 use Dingo\Api\Http\Request;
 use Dingo\Api\Http\Response;
 use Illuminate\Validation\Rule;
-use Saritasa\Laravel\Controllers\Api\BaseApiController;
+use Saritasa\LaravelControllers\Api\BaseApiController;
 use Saritasa\PushNotifications\Services\NotificationSettingsService;
 use Saritasa\PushNotifications\Models\DeviceType as DeviceTypes;
 use Saritasa\PushNotifications\Models\UserDevice;

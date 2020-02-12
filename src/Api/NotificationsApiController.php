@@ -4,7 +4,7 @@ namespace Saritasa\PushNotifications\Api;
 
 use Dingo\Api\Http\Request;
 use Saritasa\DingoApi\Traits\CurrentApiUserTrait;
-use Saritasa\Laravel\Controllers\Api\BaseApiController;
+use Saritasa\LaravelControllers\Api\BaseApiController;
 use Saritasa\PushNotifications\NotificationTransformer;
 
 class NotificationsApiController extends BaseApiController
