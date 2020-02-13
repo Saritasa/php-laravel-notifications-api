@@ -1,5 +1,9 @@
 # Changes History
 
+1.1.3
+-----
+Allow get single notification type preference
+
 1.1.2
 -----
 Implement settings update
