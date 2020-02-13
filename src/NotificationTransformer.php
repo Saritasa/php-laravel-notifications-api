@@ -2,6 +2,7 @@
 
 namespace Saritasa\PushNotifications;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Notifications\DatabaseNotification;
 use Saritasa\Transformers\BaseTransformer;
@@ -21,8 +22,8 @@ class NotificationTransformer extends BaseTransformer
         return [
             'id' => $notification->id,
             'data' => $notification->data,
-            'created_at' => $notification->created_at,
-            'read_at' => $notification->read_at,
+            'created_at' => $notification->created_at->format(Carbon::ISO8601),
+            'read_at' => $notification->read_at ? $notification->read_at->format(Carbon::ISO8601) : null,
         ];
     }
 }

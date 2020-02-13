@@ -13,7 +13,7 @@ class NotificationsApiController extends BaseApiController
 
     public function getUserNotifications()
     {
-        return $this->json($this->user()->unreadNotifications, new NotificationTransformer());
+        return $this->json($this->user()->unreadNotifications()->paginate(), new NotificationTransformer());
     }
 
     public function markNotificationsAsViewed(Request $request)
