@@ -1,5 +1,9 @@
 # Changes History
 
+1.1.4
+-----
+Update notification transformer output and corresponding Swagger docs
+
 1.1.3
 -----
 Allow get single notification type preference

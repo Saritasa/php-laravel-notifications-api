@@ -1,0 +1,9 @@
+type: object
+description: Paginated list of notifications
+properties:
+  pagination:
+    $ref: '../utils/PaginationInfo.yaml'
+  results:
+    type: array
+    items:
+      $ref: '../Notification.yaml'
