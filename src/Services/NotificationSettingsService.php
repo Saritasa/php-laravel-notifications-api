@@ -47,4 +47,12 @@ class NotificationSettingsService
             ]);
         });
     }
+
+    public function isOn($user, int $settingTypeId): bool
+    {
+        $value = NotificationSetting::whereUserId($user->id)
+            ->where(NotificationSetting::NOTIFICATION_TYPE_ID, $settingTypeId)
+            ->first('is_on');
+        return $value ? $value->is_on : NotificationType::find($settingTypeId)->default_on;
+    }
 }
