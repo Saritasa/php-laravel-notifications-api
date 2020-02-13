@@ -15,7 +15,7 @@ class CreateUserDeviceTable extends Migration
     {
         Schema::create('user_device', function (Blueprint $table) {
             $table->increments('id')->index();
-            $table->integer('user_id');
+            $table->unsignedInteger('user_id');
             $table->enum('device_type_id', ['android', 'ios']);
             $table->string('device_token', 500);
             $table->string('hash', 40);

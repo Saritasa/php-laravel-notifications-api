@@ -14,13 +14,11 @@ class CreateNotificationSettingsTable extends Migration
     {
         Schema::create('notification_settings', function (Blueprint $table) {
             $table->increments('id')->index();
-            $table->integer('user_id');
-            $table->integer('notification_type_id');
+            $table->unsignedInteger('user_id');
             $table->boolean('is_on');
             $table->timestamps();
 
             $table->foreign(['user_id'])->references('id')->on('users');
-            $table->foreign(['notification_type_id'])->references('id')->on('notification_types');
         });
     }
 
