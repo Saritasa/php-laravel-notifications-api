@@ -8,10 +8,10 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false"
-         bootstrap="test/bootstrap.php"
+         bootstrap="vendor/autoload.php"
 >
   <testsuites>
-    <testsuite name="Saritasa Transformers Test Suite">
+    <testsuite name="Saritasa Notifications API Test Suite">
       <directory>./tests/</directory>
     </testsuite>
   </testsuites>
