@@ -1,5 +1,9 @@
 # Changes History
 
+1.1.2
+-----
+Implement settings update
+
 1.1.1
 -----
 Fix namespace in controllers
