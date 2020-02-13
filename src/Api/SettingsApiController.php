@@ -9,6 +9,7 @@ use Saritasa\LaravelControllers\Api\BaseApiController;
 use Saritasa\PushNotifications\Services\NotificationSettingsService;
 use Saritasa\PushNotifications\Models\DeviceType as DeviceTypes;
 use Saritasa\PushNotifications\Models\UserDevice;
+use Saritasa\PushNotifications\Requests\UdpateNotificationsSettingsRequest;
 
 class SettingsApiController extends BaseApiController
 {
@@ -28,10 +29,9 @@ class SettingsApiController extends BaseApiController
         return $this->json($this->notificationsSettings->get());
     }
 
-    public function setNotificationSettings(Request $request)
+    public function setNotificationSettings(UdpateNotificationsSettingsRequest $request)
     {
-        $input = $request->input();
-        // TODO: validate input format here
+        $input = $request->validated();
         $this->notificationsSettings->update($input);
         return $this->getNotificationSettings();
     }

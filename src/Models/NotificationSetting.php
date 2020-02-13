@@ -22,9 +22,18 @@ use Illuminate\Database\Query\Builder;
  */
 class NotificationSetting extends Model
 {
+    public const ID = 'id';
+    public const USER_ID = 'user_id';
+    public const NOTIFICATION_TYPE_ID = 'notification_type_id';
+    public const IS_ON = 'is_on';
+
+    public $timestamps = false;
+
     protected $casts = [
         'is_on' => 'boolean'
     ];
+
+    protected $fillable = [ 'user_id', 'notification_type_id', 'is_on'];
 
     public function notificationType(): BelongsTo
     {
