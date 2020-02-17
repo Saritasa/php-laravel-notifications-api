@@ -1,41 +1,39 @@
 type: object
 description: Notification message
 required:
-- message
-- notification_type_id
+  - data
+  - created_at
 properties:
+
   id:
-    $ref: '../definitions.yaml#/Identifier'
+    type: string
+    description: Unique notification ID
     readOnly: true
+    example: a40c2d6c-8e42-4966-a38d-dc8c249a991e
+    x-chance-type: uuid
 
-  subject:
-    type: string
-    description: Notificaton subject text
-    maxLength: 50
-    example: You have a message!
-    x-chance-type: sentence
-
-  message:
-    type: string
+  data:
+    type: object
     description: Notification message text
     maxLength: 500
-    example: This is a message content
+    example:
+      message: 'This is a message content'
+      gameId: 34
     x-chance-type: paragraph
 
-  notification_type_id:
-    type: integer
-    description: Notification type
-    minimum: 1
-    example: 3
-    x-type-options:
-      min: 1
-      max: 8
-
-  is_viewed:
-    type: boolean
+  read_at:
     description: If this notification was marked as viewed
-    example: false
+    type: string
+    format: date-time
+    example: null
+    x-nullable: true
+    x-chance-type: fixed
+    x-type-value: null
 
   created_at:
     description: When message was created, see RFC3339/ISO8601 for format
-    $ref: 'utils/DateISO.yaml'
+    type: string
+    format: date-time
+    example: 2017-04-12T23:20:50.52Z
+    x-chance-type: fixed
+    x-type-value: 2017-04-12T23:20:50.52Z

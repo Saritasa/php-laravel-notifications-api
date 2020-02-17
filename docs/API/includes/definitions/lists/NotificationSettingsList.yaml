@@ -1,0 +1,7 @@
+type: object
+description: List of notifications settings. No pagination provided.
+properties:
+  results:
+    type: array
+    items:
+      $ref: '../NotificationSetting.yaml'
