@@ -78,6 +78,11 @@ class NotificationsApiServiceProvider extends ServiceProvider
                 'uses'  => 'NotificationsApiController@markNotificationsAsViewed',
                 'as'    => 'notifications.viewed'
             ]);
+
+			$api->delete('', [
+				'uses'  => 'NotificationsApiController@deleteNotifications',
+				'as'    => 'notifications.delete'
+			]);
         });
     }
 

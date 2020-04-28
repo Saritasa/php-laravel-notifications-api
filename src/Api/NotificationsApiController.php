@@ -27,4 +27,12 @@ class NotificationsApiController extends BaseApiController
             event(new NotificationRead($this->user()->id, $notification->id));
         });
     }
+
+	public function deleteNotifications(Request $request)
+	{
+		$ids = $request->get('notification_ids', []);
+		$this->user()->notifications()->whereIn('id', $ids)->delete();
+
+		return $this->response->noContent();
+	}
 }
