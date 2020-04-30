@@ -1,5 +1,14 @@
 # Changes History
 
+1.2.1
+-----
+Add timestamps to NotificationSetting
+
+1.2.0
+-----
+- Add DELETE notifications api endpoint
+- Rename POST notifications/viewed to POST notifications/read
+
 1.1.4
 -----
 Update notification transformer output and corresponding Swagger docs
