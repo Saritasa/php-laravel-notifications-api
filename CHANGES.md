@@ -1,5 +1,9 @@
 # Changes History
 
+1.2.2
+-----
+Add notification type to GET /notifications
+
 1.2.1
 -----
 Add timestamps to NotificationSetting
