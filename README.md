@@ -1,6 +1,7 @@
 # PHP Laravel Notifications API
 
-[![Build Status](https://travis-ci.org/Saritasa/php-laravel-notifications-api.svg?branch=master)](https://travis-ci.org/Saritasa/php-laravel-notifications-api)
+[![PHP Unit](https://github.com/Saritasa/php-laravel-notifications-api/workflows/PHP%20Unit/badge.svg)](https://github.com/Saritasa/php-laravel-notifications-api/actions)
+[![PHP CodeSniffer](https://github.com/Saritasa/php-laravel-notifications-api/workflows/PHP%20Codesniffer/badge.svg)](https://github.com/Saritasa/php-laravel-notifications-api/actions)
 [![Release](https://img.shields.io/github/release/saritasa/php-laravel-notifications-api.svg)](https://github.com/Saritasa/php-laravel-notifications-api/releases)
 [![PHPv](https://img.shields.io/packagist/php-v/saritasa/laravel-notifications-api.svg)](http://www.php.net)
 [![Downloads](https://img.shields.io/packagist/dt/saritasa/laravel-notifications-api.svg)](https://packagist.org/packages/saritasa/laravel-notifications-api)
