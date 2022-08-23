@@ -16,7 +16,6 @@ use Illuminate\Database\Query\JoinClause;
  */
 class NotificationRepository
 {
-
     /**
      * Get list of notifications settings by userID.
      *
@@ -28,17 +27,17 @@ class NotificationRepository
     public function getSettings(int $userId)
     {
         $query = NotificationType::select([
-            'notification_types.id',
-            'notification_types.name as notification_type_name',
-            DB::raw('coalesce(notification_settings.is_on, notification_types.default_on) is_on')
+            'NotificationTypes.id',
+            'NotificationTypes.name as notificationTypeName',
+            DB::raw('coalesce(NotificationSettings.isOn, NotificationTypes.defaultOn) isOn')
         ]);
 
-        $query->leftJoin('notification_settings', function (JoinClause $join) use ($userId) {
-            $join->on('notification_settings.notification_type_id', '=', 'notification_types.id')
-                ->where('notification_settings.user_id', '=', $userId);
+        $query->leftJoin('NotificationSettings', function (JoinClause $join) use ($userId) {
+            $join->on('NotificationSettings.notificationTypeId', '=', 'NotificationTypes.id')
+                ->where('NotificationSettings.userId', '=', $userId);
         })
-            ->where('notification_types.is_system', '=', false)
-            ->orderBy('notification_types.id', 'asc');
+            ->where('NotificationTypes.isSystem', '=', false)
+            ->orderBy('notificationTypes.id', 'asc');
         return $query->get();
     }
 
@@ -55,8 +54,8 @@ class NotificationRepository
     public function updateSetting($id, $on, $userID)
     {
         NotificationSetting::updateOrCreate(
-            ['notification_type_id' => $id, 'user_id' => $userID],
-            ['notification_type_id' => $id, 'is_on' => $on, 'user_id' => $userID]
+            ['notificationTypeId' => $id, 'userId' => $userID],
+            ['notificationTypeId' => $id, 'isOn' => $on, 'userId' => $userID]
         );
     }
 
@@ -68,10 +67,10 @@ class NotificationRepository
      */
     public function getNotifications(User $user, $limit = 100, $page = 1)
     {
-        return Notification::where('user_id', '=', $user->id)
-            ->whereNotNull('delivered_at')
-            ->selectRaw('notifications.*')
-            ->orderBy('delivered_at', 'desc')
+        return Notification::where('userId', '=', $user->id)
+            ->whereNotNull('deliveredAt')
+            ->selectRaw('Notifications.*')
+            ->orderBy('deliveredAt', 'desc')
             ->orderBy('id', 'desc')
             ->paginate($limit, null, null, $page);
     }
@@ -88,25 +87,25 @@ class NotificationRepository
     {
         /** @var Builder $query */
         $query = Notification::query()
-            ->join('notification_types', 'notification_types.id', '=', 'notifications.notification_type_id')
-            ->leftJoin('notification_settings', function ($join) {
-                $join->on('notification_settings.notification_type_id', '=', 'notifications.notification_type_id')
-                    ->on('notification_settings.user_id', '=', 'notifications.user_id');
+            ->join('NotificationTypes', 'NotificationTypes.id', '=', 'Notifications.notificationTypeId')
+            ->leftJoin('NotificationSettings', function ($join) {
+                $join->on('NotificationSettings.notificationTypeId', '=', 'Notifications.notificationTypeId')
+                    ->on('NotificationSettings.userId', '=', 'Notifications.userId');
             })
-            ->where('notifications.id', $id)
-            ->select(['notifications.*', 'notification_settings.is_on', 'notification_types.default_on']);
+            ->where('Notifications.id', $id)
+            ->select(['Notifications.*', 'NotificationSettings.isOn', 'NotificationTypes.defaultOn']);
 
         if ($userId) {
-            $query->where('notifications.user_id', $userId);
+            $query->where('Notifications.userId', $userId);
         }
 
         /** @var Notification $notification */
         $notification = $query->first();
         if (!$notification) {
-            throw new NotFoundException(trans('notifications.not_found'));
+            throw new NotFoundException(trans('Notifications.notFound'));
         }
 
-        $notification->can_push = $notification->is_on ?? $notification->default_on;
+        $notification->can_push = $notification->isOn ?? $notification->defaultOn;
 
         return $notification;
     }
@@ -137,10 +136,10 @@ class NotificationRepository
     public function changeViewStatus(array $ids, int $userId, int $status = 1)
     {
         return Notification::whereUserId($userId)
-            ->whereNotNull('delivered_at')
+            ->whereNotNull('deliveredAt')
             ->whereIsViewed(false)
             ->whereIn('id', $ids)
-            ->update(['is_viewed' => $status]);
+            ->update(['isViewed' => $status]);
     }
 
     /**
@@ -153,7 +152,7 @@ class NotificationRepository
      */
     public function countViewStatus(User $user, int $status = 0)
     {
-        return Notification::whereUserId($user->id)->where('is_viewed', $status)->count('id');
+        return Notification::whereUserId($user->id)->where('isViewed', $status)->count('id');
     }
 
     /**
@@ -170,10 +169,10 @@ class NotificationRepository
     public function insert(int $toUserID, string $subject, string $message, int $typeId, array $data = [])
     {
         return Notification::create([
-            'user_id' => $toUserID,
+            'userId' => $toUserID,
             'subject' => $subject,
             'message' => $message,
-            'notification_type_id' => $typeId,
+            'notificationTypeId' => $typeId,
             'data' => $data,
         ]);
     }

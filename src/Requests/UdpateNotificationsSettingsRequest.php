@@ -10,7 +10,7 @@ class UdpateNotificationsSettingsRequest extends FormRequest
     {
         return [
             '*.id' => 'integer|required',
-            '*.is_on' => 'boolean|required',
+            '*.isOn' => 'boolean|required',
         ];
     }
 

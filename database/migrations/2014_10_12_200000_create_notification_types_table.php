@@ -12,10 +12,10 @@ class CreateNotificationTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('notification_types', function (Blueprint $table) {
+        Schema::create('NotificationTypes', function (Blueprint $table) {
             $table->increments('id')->index();
             $table->string('name');
-            $table->boolean('default_on');
+            $table->boolean('defaultOn');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateNotificationTypesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('notification_types');
+        Schema::drop('NotificationTypes');
     }
 }

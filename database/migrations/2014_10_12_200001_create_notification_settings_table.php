@@ -12,13 +12,13 @@ class CreateNotificationSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('notification_settings', function (Blueprint $table) {
+        Schema::create('NotificationSettings', function (Blueprint $table) {
             $table->increments('id')->index();
-            $table->unsignedInteger('user_id');
-            $table->boolean('is_on');
+            $table->unsignedInteger('userId');
+            $table->boolean('isOn');
             $table->timestamps();
 
-            $table->foreign(['user_id'])->references('id')->on('users');
+            $table->foreign(['userId'])->references('id')->on('Users');
         });
     }
 
@@ -29,10 +29,10 @@ class CreateNotificationSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::table('notification_settings', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
-            $table->dropForeign(['notification_type_id']);
+        Schema::table('notificationSettings', function (Blueprint $table) {
+            $table->dropForeign(['userId']);
+            $table->dropForeign(['notificationTypeId']);
         });
-        Schema::drop('notification_settings');
+        Schema::drop('notificationSettings');
     }
 }

@@ -18,6 +18,8 @@ use Illuminate\Database\Query\Builder;
  */
 class NotificationType extends Model
 {
+    protected $table = 'NotificationSettings';
+
     protected $casts = [
         'default_on' => 'boolean'
     ];

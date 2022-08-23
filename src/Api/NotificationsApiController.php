@@ -20,7 +20,7 @@ class NotificationsApiController extends BaseApiController
 
     public function markNotificationsAsViewed(Request $request)
     {
-        $ids = $request->get('notification_ids');
+        $ids = $request->get('notificationIds');
         $notifications = $this->user()->unreadNotifications()->whereIn('id', $ids)->get();
         $notifications->each(function (DatabaseNotification $notification) {
             $notification->markAsRead();
@@ -30,7 +30,7 @@ class NotificationsApiController extends BaseApiController
 
     public function deleteNotifications(Request $request)
     {
-        $ids = $request->get('notification_ids', []);
+        $ids = $request->get('notificationIds', []);
         $this->user()->notifications()->whereIn('id', $ids)->delete();
 
         return $this->response->noContent();

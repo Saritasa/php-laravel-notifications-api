@@ -49,8 +49,8 @@ class SettingsApiController extends BaseApiController
             UserDevice::DEVICE_TYPE => Rule::in(DeviceTypes::getConstants())
         ]);
 
-        $deviceToken = $request->get('device_id');
-        $deviceType = $request->get('device_type');
+        $deviceToken = $request->get('deviceId');
+        $deviceType = $request->get('deviceType');
 
         // check token exists first
         $userDevice = UserDevice::findByDeviceToken($deviceToken);
@@ -64,7 +64,7 @@ class SettingsApiController extends BaseApiController
             UserDevice::create([
                 UserDevice::DEVICE_TYPE => $deviceType,
                 UserDevice::DEVICE_ID => $deviceToken,
-                'user_id' => $this->user->id
+                'userId' => $this->user->id
             ]);
         }
 

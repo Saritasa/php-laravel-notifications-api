@@ -66,7 +66,7 @@ class NotificationPush implements ShouldQueue
         $notification = $repo->find($this->id);
         $notification->badge = static::DEFAULT_BADGE;
 
-        $devices = UserDevice::getDevicesForSendingPush($notification->user_id);
+        $devices = UserDevice::getDevicesForSendingPush($notification->userId);
         $this->sendNotification($notification, $devices);
 
         $this->markAsSent($notification);
@@ -106,6 +106,6 @@ class NotificationPush implements ShouldQueue
     {
         unset($notification->can_push);
         unset($notification->badge);
-        $notification->update(['delivered_at' => Carbon::now()]);
+        $notification->update(['deliveredAt' => Carbon::now()]);
     }
 }
