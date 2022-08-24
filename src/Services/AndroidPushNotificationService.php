@@ -90,7 +90,7 @@ class AndroidPushNotificationService extends PushNotificationService
         $registrationIDs = (array)$registrationIDs;
 
         $fields = array(
-            'registration_ids' => $registrationIDs,
+            'registrationIds' => $registrationIDs,
             'data' => array("message" => $message),
         );
 

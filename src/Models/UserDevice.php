@@ -10,11 +10,11 @@ use Saritasa\Database\Eloquent\Entity;
  * App\Model\Entities\UserDevice
  *
  * @property integer $id
- * @property integer $user_id
- * @property DeviceType $device_type
- * @property string $device_id
+ * @property integer $userId
+ * @property DeviceType $deviceYype
+ * @property string $deviceId
  * @property string $hash
- * @property Carbon $created_at
+ * @property Carbon $createdAt
  * @method static Builder|UserDevice whereId($value)
  * @method static Builder|UserDevice whereHash($value)
  * @method static Builder|UserDevice whereUserId($value)
@@ -25,25 +25,27 @@ use Saritasa\Database\Eloquent\Entity;
  */
 class UserDevice extends Entity
 {
-    /**
-     * @var string
-     */
-    const DEVICE_TYPE = 'device_type';
+    protected $table = 'UserDevice';
 
     /**
      * @var string
      */
-    const DEVICE_ID = 'device_id';
+    const DEVICE_TYPE = 'deviceType';
 
     /**
      * @var string
      */
-    const ACCESS_TOKEN = 'access_token';
+    const DEVICE_ID = 'deviceId';
 
     /**
      * @var string
      */
-    const ACCESS_TOKEN_SECRET = 'access_token_secret';
+    const ACCESS_TOKEN = 'accessToken';
+
+    /**
+     * @var string
+     */
+    const ACCESS_TOKEN_SECRET = 'accessTokenSecret';
 
     /**
      * Web type
@@ -76,13 +78,13 @@ class UserDevice extends Entity
      * @var array
      */
     protected $fillable = [
-        'user_id',
-        'device_type',
-        'device_token'
+        'userId',
+        'deviceType',
+        'deviceToken'
     ];
 
     protected $enums = [
-        'purchase_type' => DeviceType::class
+        'purchaseType' => DeviceType::class
     ];
 
     public function setUpdatedAt($value)
@@ -116,7 +118,7 @@ class UserDevice extends Entity
      */
     public function setDeviceToken($value)
     {
-        $this->device_id = $value;
+        $this->deviceId = $value;
         $this->hash = static::toHash($value);
         return $this;
     }
@@ -157,7 +159,7 @@ class UserDevice extends Entity
      */
     public static function getByUserID($userID)
     {
-        return static::where('user_id', '=', $userID)->get()->all();
+        return static::where('userId', '=', $userID)->get()->all();
     }
 
     /**
@@ -174,7 +176,7 @@ class UserDevice extends Entity
         $listByTypes = [];
         foreach ($listDevices as $device) {
             /* @var UserDevice $device */
-            $listByTypes[$device->device_type_id][] = $device->device_token;
+            $listByTypes[$device->deviceTypeId][] = $device->deviceToken;
         }
         return $listByTypes;
     }

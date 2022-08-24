@@ -13,15 +13,15 @@ class CreateUserDeviceTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_device', function (Blueprint $table) {
+        Schema::create('UserDevice', function (Blueprint $table) {
             $table->increments('id')->index();
-            $table->unsignedInteger('user_id');
-            $table->enum('device_type_id', ['android', 'ios']);
-            $table->string('device_token', 500);
+            $table->unsignedInteger('userId');
+            $table->enum('deviceTypeId', ['android', 'ios']);
+            $table->string('deviceToken', 500);
             $table->string('hash', 40);
             $table->timestamps();
 
-            $table->foreign(['user_id'])->references('id')->on('users');
+            $table->foreign(['userId'])->references('id')->on('Users');
         });
     }
 
@@ -32,9 +32,9 @@ class CreateUserDeviceTable extends Migration
      */
     public function down()
     {
-        Schema::table('user_device', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
+        Schema::table('UserDevice', function (Blueprint $table) {
+            $table->dropForeign(['userId']);
         });
-        Schema::drop('user_device');
+        Schema::drop('UserDevice');
     }
 }

@@ -14,7 +14,7 @@ class NotificationSettingsService
     public function get()
     {
         $userSettings = NotificationSetting::whereUserId($this->user()->id)->get()
-            ->keyBy('notification_type_id');
+            ->keyBy('notificationTypeId');
         $notificationTypes = NotificationType::all();
         $result = $notificationTypes->transform(function (NotificationType $type) use ($userSettings) {
             $userValue = $userSettings->get($type->id);
@@ -52,7 +52,7 @@ class NotificationSettingsService
     {
         $value = NotificationSetting::whereUserId($user->id)
             ->where(NotificationSetting::NOTIFICATION_TYPE_ID, $settingTypeId)
-            ->first('is_on');
+            ->first('isOn');
         return $value ? $value->is_on : NotificationType::find($settingTypeId)->default_on;
     }
 }

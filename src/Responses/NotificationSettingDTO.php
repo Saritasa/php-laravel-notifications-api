@@ -10,7 +10,7 @@ class NotificationSettingDTO extends DtoModel
 {
     protected $id;
     protected $name;
-    protected $is_on;
+    protected $isOn;
 
     protected static $collectionKey = 'settings';
 
@@ -18,6 +18,6 @@ class NotificationSettingDTO extends DtoModel
     {
         $this->id = $notificationType->id;
         $this->name = $notificationType->name;
-        $this->is_on = $userSetting ? $userSetting->is_on : $notificationType->default_on;
+        $this->isOn = $userSetting ? $userSetting->is_on : $notificationType->default_on;
     }
 }

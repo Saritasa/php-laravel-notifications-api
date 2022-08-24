@@ -26,13 +26,15 @@ use Illuminate\Database\Query\Builder;
  */
 class NotificationSetting extends Model
 {
+    protected $table = 'NotificationSettings';
+
     public const ID = 'id';
-    public const USER_ID = 'user_id';
-    public const NOTIFICATION_TYPE_ID = 'notification_type_id';
-    public const IS_ON = 'is_on';
+    public const USER_ID = 'userId';
+    public const NOTIFICATION_TYPE_ID = 'notificationTypeId';
+    public const IS_ON = 'isOn';
 
     protected $casts = [
-        'is_on' => 'boolean',
+        self::IS_ON => 'boolean',
     ];
 
     protected $dates = [
@@ -40,7 +42,7 @@ class NotificationSetting extends Model
         self::UPDATED_AT,
     ];
 
-    protected $fillable = [ 'user_id', 'notification_type_id', 'is_on'];
+    protected $fillable = [ self::USER_ID, self::NOTIFICATION_TYPE_ID, self::IS_ON];
 
     public function notificationType(): BelongsTo
     {
