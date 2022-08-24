@@ -37,7 +37,7 @@ class NotificationRepository
                 ->where('NotificationSettings.userId', '=', $userId);
         })
             ->where('NotificationTypes.isSystem', '=', false)
-            ->orderBy('notificationTypes.id', 'asc');
+            ->orderBy('NotificationTypes.id', 'asc');
         return $query->get();
     }
 
