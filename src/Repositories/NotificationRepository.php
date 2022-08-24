@@ -67,10 +67,10 @@ class NotificationRepository
      */
     public function getNotifications(User $user, $limit = 100, $page = 1)
     {
-        return Notification::where('userId', '=', $user->id)
-            ->whereNotNull('deliveredAt')
-            ->selectRaw('Notifications.*')
-            ->orderBy('deliveredAt', 'desc')
+        return Notification::where('user_id', '=', $user->id)
+            ->whereNotNull('delivered_at')
+            ->selectRaw('notifications.*')
+            ->orderBy('delivered_at', 'desc')
             ->orderBy('id', 'desc')
             ->paginate($limit, null, null, $page);
     }
@@ -87,22 +87,22 @@ class NotificationRepository
     {
         /** @var Builder $query */
         $query = Notification::query()
-            ->join('NotificationTypes', 'NotificationTypes.id', '=', 'Notifications.notificationTypeId')
+            ->join('NotificationTypes', 'NotificationTypes.id', '=', 'notifications.notification_type_id')
             ->leftJoin('NotificationSettings', function ($join) {
-                $join->on('NotificationSettings.notificationTypeId', '=', 'Notifications.notificationTypeId')
-                    ->on('NotificationSettings.userId', '=', 'Notifications.userId');
+                $join->on('NotificationSettings.notificationTypeId', '=', 'notifications.notification_type_id')
+                    ->on('NotificationSettings.userId', '=', 'notifications.user_id');
             })
-            ->where('Notifications.id', $id)
-            ->select(['Notifications.*', 'NotificationSettings.isOn', 'NotificationTypes.defaultOn']);
+            ->where('notifications.id', $id)
+            ->select(['notifications.*', 'NotificationSettings.isOn', 'NotificationTypes.defaultOn']);
 
         if ($userId) {
-            $query->where('Notifications.userId', $userId);
+            $query->where('notifications.user_id', $userId);
         }
 
         /** @var Notification $notification */
         $notification = $query->first();
         if (!$notification) {
-            throw new NotFoundException(trans('Notifications.notFound'));
+            throw new NotFoundException(trans('notifications.not_found'));
         }
 
         $notification->can_push = $notification->isOn ?? $notification->defaultOn;
@@ -136,10 +136,10 @@ class NotificationRepository
     public function changeViewStatus(array $ids, int $userId, int $status = 1)
     {
         return Notification::whereUserId($userId)
-            ->whereNotNull('deliveredAt')
+            ->whereNotNull('delivered_at')
             ->whereIsViewed(false)
             ->whereIn('id', $ids)
-            ->update(['isViewed' => $status]);
+            ->update(['is_viewed' => $status]);
     }
 
     /**
@@ -152,7 +152,7 @@ class NotificationRepository
      */
     public function countViewStatus(User $user, int $status = 0)
     {
-        return Notification::whereUserId($user->id)->where('isViewed', $status)->count('id');
+        return Notification::whereUserId($user->id)->where('is_viewed', $status)->count('id');
     }
 
     /**
@@ -169,10 +169,10 @@ class NotificationRepository
     public function insert(int $toUserID, string $subject, string $message, int $typeId, array $data = [])
     {
         return Notification::create([
-            'userId' => $toUserID,
+            'user_id' => $toUserID,
             'subject' => $subject,
             'message' => $message,
-            'notificationTypeId' => $typeId,
+            'notification_type_id' => $typeId,
             'data' => $data,
         ]);
     }

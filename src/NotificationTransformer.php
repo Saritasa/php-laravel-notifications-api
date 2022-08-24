@@ -23,8 +23,8 @@ class NotificationTransformer extends BaseTransformer
             'id' => $notification->id,
             'data' => $notification->data,
             'type' => $notification->type,
-            'created_at' => $notification->createdAt->format(Carbon::ISO8601),
-            'read_at' => $notification->readAt ? $notification->readAt->format(Carbon::ISO8601) : null,
+            'created_at' => $notification->created_at->format(Carbon::ISO8601),
+            'read_at' => $notification->read_at ? $notification->read_at->format(Carbon::ISO8601) : null,
         ];
     }
 }
