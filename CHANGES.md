@@ -1,4 +1,10 @@
 # Changes History
+
+2.0.0
+-----
+! Use uppercase in table names
+- Fix pagination - page size (per_page query parameter) was not working
+
 1.2.0
 -----
 - Add `DELETE notifications` api endpoint
