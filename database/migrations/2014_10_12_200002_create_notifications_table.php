@@ -34,7 +34,7 @@ class CreateNotificationsTable extends Migration
     public function down()
     {
         Schema::table('notifications', function (Blueprint $table) {
-            $table->dropForeign(['notificatioTypeId']);
+            $table->dropForeign(['notificationTypeId']);
         });
         Schema::drop('notifications');
     }
