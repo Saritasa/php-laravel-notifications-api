@@ -41,6 +41,7 @@ class NotificationsApiController extends BaseApiController
             $notification->markAsRead();
             event(new NotificationRead($this->user()->id, $notification->id));
         });
+        return $this->response->noContent();
     }
 
     public function deleteNotifications(Request $request)
