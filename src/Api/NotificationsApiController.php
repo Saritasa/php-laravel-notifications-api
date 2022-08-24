@@ -2,6 +2,7 @@
 
 namespace Saritasa\PushNotifications\Api;
 
+use Saritasa\PushNotifications\Requests\NotificationRequest;
 use Dingo\Api\Http\Request;
 use Illuminate\Notifications\DatabaseNotification;
 use Saritasa\DingoApi\Traits\CurrentApiUserTrait;
@@ -13,9 +14,23 @@ class NotificationsApiController extends BaseApiController
 {
     use CurrentApiUserTrait;
 
-    public function getUserNotifications()
+    public function __construct(NotificationTransformer $transformer) //phpcs:ignore
     {
-        return $this->json($this->user()->unreadNotifications()->paginate(), new NotificationTransformer());
+        parent::__construct($transformer);
+    }
+
+    public function getUserNotifications(NotificationRequest $request)
+    {
+        if (is_null($request->type) || $request->type === '') {
+            $responseData = $this->user->unreadNotifications();
+        } else {
+            $responseData = $this->user->unreadNotifications()
+                ->where('type', $request->type);
+        }
+        return $this->response->paginator(
+            $responseData->paginate($request->per_page),
+            $this->transformer
+        );
     }
 
     public function markNotificationsAsViewed(Request $request)
