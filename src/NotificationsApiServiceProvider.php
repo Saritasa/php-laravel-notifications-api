@@ -81,7 +81,7 @@ class NotificationsApiServiceProvider extends ServiceProvider
 
             $api->delete('', [
                 'uses'  => 'NotificationsApiController@deleteNotifications',
-                'as'    => 'notifications.delete',
+                'as'    => 'notifications.delete'
             ]);
         });
     }
