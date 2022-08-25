@@ -102,20 +102,20 @@ class NotificationsApiServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/push.php' => config_path('push.php')
-        ], 'config');
+        ], 'saritasa-notifications-config');
     }
 
     private function declarePublishedArtifacts()
     {
         $this->publishes([
-            __DIR__ . '/../docs/API' => base_path('docs/API')
-        ], 'swagger');
+            __DIR__ . '/../docs/API_delete' => base_path('docs/API')
+        ], 'saritasa-notifications-swagger');
     }
 
     private function declarePublishedMigrations()
     {
         $this->publishes([
             __DIR__.'/../database' => database_path()
-        ], 'migrations');
+        ], 'saritasa-notifications-migrations');
     }
 }
