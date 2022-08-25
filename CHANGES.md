@@ -1,15 +1,14 @@
 # Changes History
-2.0.0
+2.0.1
 -----
-- Change notation to camel case (exept notification table) 
-- Add NotificationRequest for filtering input
-- Pagination now work correctly
-- Docs for SWAGGER updated (variable names and paths for publish)
+- Docs for SWAGGER updated (variable names and paths for correct publish)
+- Add artisan tags for vendor publishing
 
 2.0.0
 -----
 ! Use uppercase in table names
 - Fix pagination - page size (per_page query parameter) was not working
+- Add NotificationRequest for filtering input
 
 1.2.2
 -----

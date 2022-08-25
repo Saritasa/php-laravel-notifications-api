@@ -29,7 +29,20 @@ add the NotificationsApiServiceProvider in ``config/app.php``:
 ```
 
 For customization some library entities use artisan publish command:
-php artisan vendor:publish --tag=saritasa-notifications-
+
+- ```php artisan vendor:publish --tag=saritasa-notifications-swagger```
+  
+  for add yaml files for api description (*note: don't forget add them to paths.yaml*)
+- ```php artisan vendor:publish --tag=saritasa-notifications-migrations```
+  
+  for customization migrations
+- ```php artisan vendor:publish --tag=saritasa-notifications-config```
+
+  for customization config file
+
+Or just use
+```php artisan vendor:publish --tag=saritasa-notifications```
+
 
 ## Models (DB mapping)
 
@@ -51,29 +64,6 @@ Mandatory fields:
 * userId (*int*)
 * notificationTypeId (*int*)
 * isOn (*boolean*)
-
-### UserDevice
-
-Describe users devices for notification via smartphones
-
-Mandatory fields:
-* id (*int*)
-* userId (*int*)
-* deviceTypeId (*enum['android', 'ios']*)
-* deviceToken (*string*)
-* hash (*string*)
-
-### notifications
-
-Extend basic laravel notifications table. Table name and basic column names has full compatibility.
-
-Mandatory fields:
-* id (*int*)
-* notifiable_id (*int*)
-* notifiable_type (*string*)
-* type (*string*)
-* title (*string*)
-* data (*string*)
 
 ## Contributing
 
