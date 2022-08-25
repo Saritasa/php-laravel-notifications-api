@@ -1,33 +1,38 @@
 post:
   tags: ['Notifications']
   summary: Mark notification message(s) as viewed
-  operationId: MarkNotificationsViewed
-  parameters:
-  - in: body
-    name: markNotificationsViewedRequest
-    schema:
-      type: object
-      properties:
-        message_ids:
-          type: array
-          description: List of message IDs, sent to user
-          items:
-            type: integer
-            minimum: 1
-          example: [123,124,125]
+  operationId: MarkNotificationsRead
+  requestBody:
+    required: true
+    content:
+      applicaiton/json:
+        schema:
+          type: object
+          properties:
+            notification_ids:
+              type: array
+              description: List of message IDs, sent to user
+              items:
+                type: string
+                format: uuid
+              example:
+                - b1d32fd1-df40-4f6e-91ce-04aa6f029468
+                - d643d2bf-60a0-4c61-a7fb-62e16dcd7f68
+                - ce58b854-927a-4e20-958e-c0731e7561b4
   responses:
     204:
       description: Notifications marked as viewed successfully
     400:
-      $ref: '../../responses.yaml#/InputValidationError'
+      $ref: '../../components/responses.yaml#/InputValidationError'
     401:
-      $ref: '../../responses.yaml#/UserNotAuthorized'
+      $ref: '../../components/responses.yaml#/UserNotAuthorized'
     403:
       description: User tries to mark as read other user's notification
-      schema:
-         $ref: '../../definitions.yaml#/ErrorMessage'
+      content:
+        application/json:
+          schema:
+             $ref: '../../components/schemas.yaml#/ErrorMessage'
     default:
-      $ref: '../../responses.yaml#/APIErrorResponse'
+      $ref: '../../components/responses.yaml#/APIErrorResponse'
   security:
   - AuthToken: []
-

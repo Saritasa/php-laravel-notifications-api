@@ -1,4 +1,10 @@
 # Changes History
+2.0.0
+-----
+- Change notation to camel case (exept notification table) 
+- Add NotificationRequest for filtering input
+- Pagination now work correctly
+- Docs for SWAGGER updated (variable names and paths for publish)
 
 1.2.2
 -----
