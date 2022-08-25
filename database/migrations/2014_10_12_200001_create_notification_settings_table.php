@@ -29,9 +29,9 @@ class CreateNotificationSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::table('notificationSettings', function (Blueprint $table) {
+        Schema::table('NotificationSettings', function (Blueprint $table) {
             $table->dropForeign(['userId']);
         });
-        Schema::drop('notificationSettings');
+        Schema::drop('NotificationSettings');
     }
 }

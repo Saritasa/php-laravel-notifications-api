@@ -21,6 +21,7 @@ class NotificationsApiServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->declarePublishedFiles();
+            $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         }
 
         $this->registerRoutes($apiRouter);
