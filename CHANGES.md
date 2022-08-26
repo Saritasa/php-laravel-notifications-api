@@ -8,7 +8,6 @@
 -----
 ! Use uppercase in table names
 - Fix pagination - page size (per_page query parameter) was not working
-- Add NotificationRequest for filtering input
 
 1.2.2
 -----
