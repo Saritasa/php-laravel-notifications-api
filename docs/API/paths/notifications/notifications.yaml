@@ -26,3 +26,30 @@ get:
       $ref: '../../components/responses.yaml#/APIErrorResponse'
   security:
   - AuthToken: []
+delete:
+  tags: ['Notifications']
+  summary: 'Deletes notification message(s)'
+  operationId: DeleteNotifications
+  parameters:
+    - in: body
+      name: deleteNotificationsRequest
+      schema:
+        type: object
+        properties:
+          message_ids:
+            type: array
+            description: List of message IDs, sent to user
+            items:
+              type: string
+              format: uuid
+              minimum: 1
+            example: [b1d32fd1-df40-4f6e-91ce-04aa6f029468,d643d2bf-60a0-4c61-a7fb-62e16dcd7f68]
+  responses:
+    204:
+      description: Notifications deleted successfully
+    401:
+      $ref: '../../responses.yaml#/UserNotAuthorized'
+    default:
+      $ref: '../../responses.yaml#/APIErrorResponse'
+  security:
+    - AuthToken: []
