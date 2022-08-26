@@ -28,6 +28,22 @@ add the NotificationsApiServiceProvider in ``config/app.php``:
 )
 ```
 
+For customization some library entities use artisan publish command:
+
+- ```php artisan vendor:publish --tag=saritasa-notifications-swagger```
+  
+  for add yaml files for api description (*note: don't forget add them to paths.yaml*)
+- ```php artisan vendor:publish --tag=saritasa-notifications-migrations```
+  
+  for customization migrations
+- ```php artisan vendor:publish --tag=saritasa-notifications-config```
+
+  for customization config file
+
+Or just use to publish all customizable resources
+```php artisan vendor:publish --tag=saritasa-notifications```
+
+
 ## Models (DB mapping)
 
 ### NotificationType
@@ -37,7 +53,7 @@ Description of possible notification type, and if it should be on or off by defa
 Mandatory fields
 * id (*int*)
 * name (*string*)
-* default_on (*boolean*)
+* defaultOn (*boolean*)
 
 ### NotificationSetting
 
@@ -45,9 +61,9 @@ User's personal setting value - if certain notification type is on or off.
 
 Mandatory fields:
 * id (*int*)
-* user_id (*int*)
-* notification_type_id (*int*)
-* is_on (*boolean*)
+* userId (*int*)
+* notificationTypeId (*int*)
+* isOn (*boolean*)
 
 ## Contributing
 

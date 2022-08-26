@@ -1,4 +1,8 @@
 # Changes History
+2.0.1
+-----
+- Docs for SWAGGER updated (variable names and paths for correct publish)
+- Add artisan tags for vendor publishing
 
 2.0.0
 -----

@@ -21,7 +21,7 @@ properties:
       gameId: 34
     x-chance-type: paragraph
 
-  read_at:
+  readAt:
     description: If this notification was marked as viewed
     type: string
     format: date-time
@@ -30,7 +30,7 @@ properties:
     x-chance-type: fixed
     x-type-value: null
 
-  created_at:
+  createAt:
     description: When message was created, see RFC3339/ISO8601 for format
     type: string
     format: date-time

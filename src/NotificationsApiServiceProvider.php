@@ -21,6 +21,7 @@ class NotificationsApiServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->declarePublishedFiles();
+            $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         }
 
         $this->registerRoutes($apiRouter);
@@ -95,26 +96,36 @@ class NotificationsApiServiceProvider extends ServiceProvider
         $this->declarePublishedConfig();
         $this->declarePublishedArtifacts();
         $this->declarePublishedMigrations();
+        $this->declarePublishedAll();
     }
 
     private function declarePublishedConfig()
     {
         $this->publishes([
             __DIR__.'/../config/push.php' => config_path('push.php')
-        ], 'config');
+        ], 'saritasa-notifications-config');
     }
 
     private function declarePublishedArtifacts()
     {
         $this->publishes([
             __DIR__ . '/../docs/API' => base_path('docs/API')
-        ], 'swagger');
+        ], 'saritasa-notifications-swagger');
     }
 
     private function declarePublishedMigrations()
     {
         $this->publishes([
             __DIR__.'/../database' => database_path()
-        ], 'migrations');
+        ], 'saritasa-notifications-migrations');
+    }
+
+    private function declarePublishedAll()
+    {
+        $this->publishes([
+            __DIR__.'/../config/push.php' => config_path('push.php'),
+            __DIR__ . '/../docs/API' => base_path('docs/API'),
+            __DIR__.'/../database' => database_path(),
+        ], 'saritasa-notifications');
     }
 }

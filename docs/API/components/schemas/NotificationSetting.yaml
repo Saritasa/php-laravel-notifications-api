@@ -1,6 +1,7 @@
 type: object
 description: Notification Setting
 properties:
+
   id:
     $ref: 'utils/Identifier.yaml'
 
@@ -13,7 +14,7 @@ properties:
     x-type-options:
       words: 4
 
-  default_on:
+  is_on:
     type: boolean
-    description: If notification turned on or off by default
+    description: If notification is turned on or off
     example: true
