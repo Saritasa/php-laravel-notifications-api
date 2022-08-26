@@ -40,7 +40,7 @@ For customization some library entities use artisan publish command:
 
   for customization config file
 
-Or just use
+Or just use to publish all customizable resources
 ```php artisan vendor:publish --tag=saritasa-notifications```
 
 
